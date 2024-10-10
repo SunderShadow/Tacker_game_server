@@ -25,6 +25,16 @@ class Game implements ServerMessageHandlerInterface
 
     public function handleMessage(Player $sender, Message $msg): void
     {
+        echo
+            "Game#", spl_object_id($this),       PHP_EOL,
+            "---------------------------",       PHP_EOL,
+            "Message",                           PHP_EOL,
+            "Action: ", $msg->action,            PHP_EOL,
+            "Data: ",   json_encode($msg->data), PHP_EOL,
+            "---------------------------",       PHP_EOL,
+        PHP_EOL;
+
+
         $this->state->handleMessage($sender, $msg);
     }
 }
