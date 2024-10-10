@@ -6,10 +6,12 @@ use Core\Game;
 use Core\Player;
 use Respect\Validation\Mixins\ChainedValidator;
 use Respect\Validation\Validator;
-use Respect\Validation\Validator as v;
 
 abstract class Action
 {
+    /**
+     * @throws \Throwable
+     */
     public function __construct(
         protected Player $invoker,
         protected readonly array $data,

@@ -8,7 +8,7 @@ use Respect\Validation\Validator as v;
 
 class TestAction extends Action
 {
-    protected function validator(): Validator
+    protected function validator(): Validator|ChainedValidator
     {
         return v::create()
             ->key('test_key', v::stringVal())
