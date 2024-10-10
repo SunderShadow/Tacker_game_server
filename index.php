@@ -1,4 +1,7 @@
 <?php
+
+use Respect\Validation\Validator;
+
 include "vendor/autoload.php";
 
 $gameLobby = new \Core\GameLobby();
@@ -13,5 +16,9 @@ $players = [
 
 $game = $gameLobby->startGame();
 
-$players[0]->sendMessage(new \Core\Message\Message('action:test', ['someData']));
-$players[0]->sendMessage(new \Core\Message\Message('undefined', ['someData']));
+try {
+    $players[0]->sendMessage(new \Core\Message\Message('action:test', ['someData']));
+} catch (\Respect\Validation\Exceptions\ValidationException $e) {
+    $players[0]->handleMessage(new \Core\Message\Error\Error($e->getFullMessage()));
+}
+

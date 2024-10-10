@@ -4,6 +4,9 @@ namespace Core\GameState\Action;
 
 use Core\Game;
 use Core\Player;
+use Respect\Validation\Mixins\ChainedValidator;
+use Respect\Validation\Validator;
+use Respect\Validation\Validator as v;
 
 abstract class Action
 {
@@ -13,12 +16,16 @@ abstract class Action
         protected readonly Game $game
     )
     {
-        $this->validate();
+        $validator = $this->validator();
+
+        if ($validator) {
+            $validator->assert($data);
+        }
     }
 
-    private function validate(): void
+    protected function validator(): ChainedValidator|Validator|null
     {
-        // TODO: implement validation
+        return null;
     }
 
     abstract public function __invoke(): void;

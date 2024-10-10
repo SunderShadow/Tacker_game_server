@@ -22,11 +22,6 @@ abstract class GameState implements GameStateInterface
         $this->game = $game;
     }
 
-    private function addAction(string $name, callable $cb): void
-    {
-        $this->actions[$name] = $cb;
-    }
-
     public function handleMessage(Player $sender, Message $msg): void
     {
         if (!isset($this->actions[$msg->action])) {
