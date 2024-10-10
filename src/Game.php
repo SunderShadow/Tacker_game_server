@@ -2,8 +2,9 @@
 
 namespace Core;
 
-use Core\GameState\GameStateInterface;
 use Core\GameState\PrepareCards;
+use Core\Interfaces\GameStateInterface;
+use Core\Interfaces\ServerMessageHandlerInterface;
 use Core\Message\Message;
 
 class Game implements ServerMessageHandlerInterface

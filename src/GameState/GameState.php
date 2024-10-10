@@ -4,6 +4,7 @@ namespace Core\GameState;
 
 use Core\Game;
 use Core\GameState\Action\Action;
+use Core\Interfaces\GameStateInterface;
 use Core\Message\Error\UndefinedAction;
 use Core\Message\Message;
 use Core\Player;

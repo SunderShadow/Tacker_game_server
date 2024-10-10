@@ -1,8 +1,9 @@
 <?php
 
-namespace Core;
+namespace Core\Interfaces;
 
 use Core\Message\Message;
+use Core\Player;
 
 interface ServerMessageHandlerInterface
 {

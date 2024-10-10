@@ -1,9 +1,8 @@
 <?php
 
-namespace Core\GameState;
+namespace Core\Interfaces;
 
 use Core\Game;
-use Core\ServerMessageHandlerInterface;
 
 interface GameStateInterface extends ServerMessageHandlerInterface
 {
