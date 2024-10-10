@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Entity\Player;
+
 class GameLobby
 {
     public array $players = [];

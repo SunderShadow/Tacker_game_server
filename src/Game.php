@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Entity\Player;
 use Core\GameState\PrepareCards;
 use Core\Interfaces\GameStateInterface;
 use Core\Interfaces\ServerMessageHandlerInterface;

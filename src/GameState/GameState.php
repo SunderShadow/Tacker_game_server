@@ -2,12 +2,12 @@
 
 namespace Core\GameState;
 
+use Core\Entity\Player;
 use Core\Game;
 use Core\GameState\Action\Action;
 use Core\Interfaces\GameStateInterface;
 use Core\Message\Error\UndefinedAction;
 use Core\Message\Message;
-use Core\Player;
 
 abstract class GameState implements GameStateInterface
 {

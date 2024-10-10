@@ -3,6 +3,7 @@
 namespace Core;
 
 use ArrayObject;
+use Core\Entity\Player;
 use Core\Message\Message;
 
 /**

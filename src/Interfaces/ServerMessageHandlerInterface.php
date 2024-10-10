@@ -2,8 +2,8 @@
 
 namespace Core\Interfaces;
 
+use Core\Entity\Player;
 use Core\Message\Message;
-use Core\Player;
 
 interface ServerMessageHandlerInterface
 {

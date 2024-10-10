@@ -2,8 +2,8 @@
 
 namespace Core\GameState\Action;
 
+use Core\Entity\Player;
 use Core\Game;
-use Core\Player;
 use Respect\Validation\Mixins\ChainedValidator;
 use Respect\Validation\Validator;
 
