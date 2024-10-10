@@ -1,0 +1,21 @@
+{
+    "name": "sander/tacker-game",
+    "description": "Tacker game",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sander",
+            "email": "sunundershadow@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.3"
+    }
+}
