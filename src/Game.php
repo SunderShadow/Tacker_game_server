@@ -20,7 +20,12 @@ class Game implements ServerMessageHandlerInterface
         }
 
         $this->players = new PlayersBag($players);
-        $this->state = new PrepareCards($this);
+        $this->changeState(new PrepareCards($this));
+    }
+
+    public function changeState(GameStateInterface $state): void
+    {
+        $this->state = $state;
     }
 
     public function handleMessage(Player $sender, Message $msg): void

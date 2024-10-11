@@ -1,5 +1,7 @@
 <?php
 
+use Core\Message\Message;
+
 include "vendor/autoload.php";
 
 $gameLobby = new \Core\GameLobby();
@@ -15,8 +17,13 @@ $players = [
 $game = $gameLobby->startGame();
 
 try {
-    $players[0]->sendMessage(new \Core\Message\Message('card:fill', ['someData']));
-    $players[0]->sendMessage(new \Core\Message\Message('card:fill', ['someData']));
+//    $players[0]->sendMessage(new Message('card:fill', ['someData']));
+//    $players[0]->sendMessage(new Message('card:fill', ['someData']));
+
+    $game->changeState(new \Core\GameState\Battle($game));
+
+
+    $players[0]->sendMessage(new Message('vote', ['id' => $players[1]->id]));
 } catch (\Respect\Validation\Exceptions\ValidationException $e) {
     $players[0]->handleMessage(new \Core\Message\Error\Error($e->getFullMessage()));
 }

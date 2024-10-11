@@ -17,6 +17,7 @@ class Player
 
     /** @var Card[]  */
     protected array $cards = [];
+    protected int $votes = 0;
 
     public function __construct()
     {
@@ -28,6 +29,11 @@ class Player
         $this->cards[] = $card;
         $card->owner = $this;
         $this->handleMessage(new PlayerCardReceive($card));
+    }
+
+    public function acceptVote(): void
+    {
+        $this->votes += 1;
     }
 
     public function getCurrentCard(): Card
