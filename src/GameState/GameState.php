@@ -21,6 +21,7 @@ abstract class GameState implements GameStateInterface
     public function __construct(Game $game)
     {
         $this->game = $game;
+        $this->process();
     }
 
     public function handleMessage(Player $sender, Message $msg): void
@@ -34,4 +35,6 @@ abstract class GameState implements GameStateInterface
         $action = new $this->actions[$msg->action]($sender, $msg->data, $this->game);
         $action->__invoke();
     }
+
+    abstract public function process();
 }

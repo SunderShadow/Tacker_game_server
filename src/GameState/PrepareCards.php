@@ -12,17 +12,15 @@ class PrepareCards extends GameState
         'card:fill' => FillCard::class
     ];
 
-    public function __construct(Game $game)
-    {
-        parent::__construct($game);
-
-        $this->giveCardEachPlayer();
-    }
-
     protected function giveCardEachPlayer(): void
     {
         foreach ($this->game->players as $player) {
             $player->getNewCard(new Card());
         }
+    }
+
+    public function process(): void
+    {
+        $this->giveCardEachPlayer();
     }
 }
