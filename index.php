@@ -4,7 +4,10 @@ use Core\Message\Message;
 
 include "vendor/autoload.php";
 
+const ROOT_DIR = __DIR__;
+
 $gameLobby = new \Core\GameLobby();
+
 /** @var \Core\Entity\Player[] $players */
 $players = [
     $gameLobby->addPlayer(),

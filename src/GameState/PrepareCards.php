@@ -2,8 +2,6 @@
 
 namespace Core\GameState;
 
-use Core\Entity\Card;
-use Core\Game;
 use Core\GameState\Action\FillCard;
 
 class PrepareCards extends GameState
@@ -15,7 +13,7 @@ class PrepareCards extends GameState
     protected function giveCardEachPlayer(): void
     {
         foreach ($this->game->players as $player) {
-            $player->acceptNewCard(new Card());
+            $player->acceptNewCard($this->game->cardLoader->popRandom());
         }
     }
 

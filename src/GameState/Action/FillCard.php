@@ -24,6 +24,6 @@ class FillCard extends Action
             return;
         }
 
-        $this->invoker->acceptNewCard(new Card());
+        $this->invoker->acceptNewCard($this->game->cardLoader->popRandom());
     }
 }

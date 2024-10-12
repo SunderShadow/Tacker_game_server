@@ -11,6 +11,9 @@ use Core\Message\Message;
 class Game implements ServerMessageHandlerInterface
 {
     public readonly PlayersBag $players;
+
+    public CardLoader $cardLoader;
+
     private GameStateInterface $state;
 
     public function __construct($players)
@@ -18,6 +21,9 @@ class Game implements ServerMessageHandlerInterface
         foreach ($players as $player) {
             $player->game = $this;
         }
+
+        $this->cardLoader = new CardLoader();
+        $this->cardLoader->load();
 
         $this->players = new PlayersBag($players);
         $this->changeState(new PrepareCards($this));

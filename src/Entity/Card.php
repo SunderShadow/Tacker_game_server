@@ -12,9 +12,9 @@ class Card implements \JsonSerializable
 
     public array $values = [];
 
-    public function __construct()
+    public function __construct(string $template)
     {
-        $this->template = "Some ___ template";
+        $this->template = $template;
     }
 
     /**
@@ -40,7 +40,7 @@ class Card implements \JsonSerializable
         return preg_replace_callback(self::TEMPLATE_PATTERN, fn () => $this->values[$i++], $this->template);
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'owner_id' => $this->owner->id,
