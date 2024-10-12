@@ -24,6 +24,6 @@ class FillCard extends Action
             return;
         }
 
-        $this->invoker->getNewCard(new Card());
+        $this->invoker->acceptNewCard(new Card());
     }
 }

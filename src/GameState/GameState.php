@@ -13,7 +13,10 @@ abstract class GameState implements GameStateInterface
 {
     protected readonly Game $game;
 
-    /** @var array<class-string|callable>  */
+    /**
+     * Container for all registered actions
+     * @var array<class-string|callable>
+     */
     protected array $actions = [
         // 'action:test' => TestAction::class
     ];
@@ -36,5 +39,9 @@ abstract class GameState implements GameStateInterface
         $action->__invoke();
     }
 
-    abstract public function process();
+    /**
+     * All user logic stores here
+     * @return void
+     */
+    abstract public function process(): void;
 }

@@ -6,11 +6,12 @@ use Core\Entity\Player;
 use Core\Game;
 use Respect\Validation\Mixins\ChainedValidator;
 use Respect\Validation\Validator;
+use Throwable;
 
 abstract class Action
 {
     /**
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function __construct(
         protected Player $invoker,
@@ -25,10 +26,18 @@ abstract class Action
         }
     }
 
+    /**
+     * Returns validator provided by "respect/validation"
+     * @return ChainedValidator|Validator|null
+     */
     protected function validator(): ChainedValidator|Validator|null
     {
         return null;
     }
 
+    /**
+     * All action logic contains here
+     * @return void
+     */
     abstract public function __invoke(): void;
 }

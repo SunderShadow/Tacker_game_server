@@ -17,26 +17,35 @@ class Card implements \JsonSerializable
         $this->template = "Some ___ template";
     }
 
-    public function jsonSerialize(): mixed
-    {
-        return [
-            'owner_id' => $this->owner->id,
-            'template' => $this->getFilled()
-        ];
-    }
-
-    public function isFilled(): bool
+    /**
+     * Check if template is complete
+     * @return bool
+     */
+    public function isComplete(): bool
     {
         return empty($this->values);
     }
 
-    public function getFilled(): ?string
+    /**
+     * Get completed template
+     * @return string|null
+     */
+    public function getCompleted(): ?string
     {
-        if ($this->isFilled()) {
+        if ($this->isComplete()) {
             return null;
         }
 
         $i = 0;
         return preg_replace_callback(self::TEMPLATE_PATTERN, fn () => $this->values[$i++], $this->template);
     }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'owner_id' => $this->owner->id,
+            'template' => $this->getCompleted()
+        ];
+    }
+
 }

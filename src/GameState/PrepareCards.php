@@ -15,7 +15,7 @@ class PrepareCards extends GameState
     protected function giveCardEachPlayer(): void
     {
         foreach ($this->game->players as $player) {
-            $player->getNewCard(new Card());
+            $player->acceptNewCard(new Card());
         }
     }
 
