@@ -46,6 +46,24 @@ class Player
         return count($this->cards) >= self::MAX_CARDS;
     }
 
+    public function hasCards(): bool
+    {
+        return count($this->cards);
+    }
+
+    /**
+     * Get a pair of cards to battle
+     * @param Player $player
+     * @return Card[]
+     */
+    public function battleWith(Player $player): array
+    {
+        return [
+            array_pop($this->cards),
+            array_pop($player->cards)
+        ];
+    }
+
     public function sendMessage(Message $msg): void
     {
         $this->game->handleMessage($this, $msg);
