@@ -4,6 +4,10 @@ namespace Core\GameState;
 
 use Core\Entity\Player;
 use Core\Message\BattleCardPair;
+use Core\Message\Message;
+use function React\Async\async;
+use function React\Async\await;
+use function React\Promise\Timer\sleep as reactSleep;
 
 class Battle extends GameState
 {
@@ -18,9 +22,13 @@ class Battle extends GameState
     {
         $this->opponents = $this->game->players->getArrayCopy();
 
-        while (count($this->opponents)) {
-            $this->game->players->sendMessage(new BattleCardPair($this->getTwoOpponentsCards()));
-        }
+        async(function () {
+            while (count($this->opponents)) {
+                $this->game->players->sendMessage(new BattleCardPair($this->getTwoOpponentsCards()));
+                await(reactSleep(2));
+            }
+            $this->game->players->sendMessage(new Message('battle:end'));
+        })();
     }
 
     private function getTwoOpponentsCards(): array

@@ -3,15 +3,15 @@
 namespace Core\Entity;
 
 use Core\Game;
-use Core\Message\Error\Error;
+use Core\GameLobby;
 use Core\Message\Message;
 use Core\Message\PlayerCardReceive;
 
-class Player
+class Player extends User
 {
     const int MAX_CARDS = 2;
 
-    public readonly int $id;
+    public GameLobby $lobby;
 
     public Game $game;
 
@@ -19,9 +19,9 @@ class Player
     protected array $cards = [];
     protected int $votes = 0;
 
-    public function __construct()
+    public function inLobby(): bool
     {
-        $this->id = rand(0, 100);
+        return isset($this->lobby);
     }
 
     /**
@@ -93,29 +93,5 @@ class Player
     public function sendMessage(Message $msg): void
     {
         $this->game->handleMessage($this, $msg);
-    }
-
-    /**
-     * Send message to client
-     * @param Message $msg
-     * @return void
-     */
-    public function handleMessage(Message $msg): void
-    {
-        echo "Player#", spl_object_id($this), PHP_EOL;
-        echo "---------------------------", PHP_EOL;
-        if ($msg instanceof Error) {
-            echo
-                "Error",                             PHP_EOL,
-                "Code: ",     $msg->data['code'],    PHP_EOL,
-                "Message: ",  $msg->data['message'], PHP_EOL;
-        } else {
-            echo
-                "Message",                           PHP_EOL,
-                "Action: ", $msg->action,            PHP_EOL,
-                "Data: ",   json_encode($msg->data), PHP_EOL;
-        }
-
-        echo "---------------------------", PHP_EOL, PHP_EOL;
     }
 }

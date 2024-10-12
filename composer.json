@@ -3,6 +3,7 @@
     "description": "Tacker game",
     "type": "project",
     "license": "MIT",
+    "version": "0.1.0",
     "autoload": {
         "psr-4": {
             "Core\\": "src/"
@@ -17,6 +18,11 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^8.3",
-        "respect/validation": "dev-main"
+        "respect/validation": "dev-main",
+        "cboden/ratchet": "dev-master",
+        "react/async": "4.x-dev",
+        "react/promise": "3.x-dev",
+        "react/event-loop": "1.x-dev",
+        "react/promise-timer": "1.x-dev"
     }
 }

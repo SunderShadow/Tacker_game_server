@@ -1,24 +1,26 @@
 <?php
 
-namespace Core\GameState\Action;
+namespace Core;
 
 use Core\Entity\Player;
-use Core\Game;
 use Respect\Validation\Mixins\ChainedValidator;
 use Respect\Validation\Validator;
-use Throwable;
 
-abstract class Action extends \Core\Action
+abstract class Action
 {
-    protected readonly Game $game;
-
     /**
      * @throws Throwable
      */
-    public function __construct(Player $invoker, array $data, Game $game)
+    public function __construct(
+        protected Player $invoker,
+        protected readonly array $data
+    )
     {
-        parent::__construct($invoker, $data);
-        $this->game = $game;
+        $validator = $this->validator();
+
+        if ($validator) {
+            $validator->assert($data);
+        }
     }
 
     /**
