@@ -20,6 +20,7 @@ class Battle extends GameState
 
     public function process(): void
     {
+        $this->game->players->sendMessage(new Message('game:state:battle'));
         $this->opponents = $this->game->players->getArrayCopy();
 
         async(function () {

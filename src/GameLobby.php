@@ -35,7 +35,7 @@ class GameLobby implements ServerMessageHandlerInterface
 
         static::$instances[$this->id] = $this;
 
-        $this->owner->handleMessage(new Message('lobby:create', [
+        $this->owner->handleMessage(new Message('lobby:create:success', [
             'id' => $this->id
         ]));
     }
