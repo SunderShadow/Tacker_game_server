@@ -13,7 +13,10 @@
 #### Payload
 ```json
 {
-  "action": "lobby:create"
+  "action": "lobby:create",
+  "data": {
+    "name": "Any user name"
+  }
 }
 ```
 
@@ -22,7 +25,13 @@
 {
   "action":  "lobby:create:success",
   "data": {
-    "id": 312 // Lobby_id
+    "id": 312 // Lobby_id,
+    "players": [
+      {
+        "id": 24,
+        "name": "Any user name"
+      }
+    ]
   }
 }
 ```
@@ -35,7 +44,8 @@
 {
   "action": "lobby:join",
   "data": {
-    "id": 312 // Lobby_id
+    "id": 312, // Lobby_id
+    "name": "Other name"
   }
 }
 ```
@@ -43,7 +53,20 @@
 #### Returns
 ```json
 {
-  "action":  "lobby:join:success"
+  "action":  "lobby:join:success",
+  "data": {
+    "id": 312 // Lobby_id,
+    "players": [
+      {
+        "id": 24,
+        "name": "Any user name"
+      },
+      {
+        "id": 25,
+        "name": "Other name"
+      }
+    ]
+  }
 }
 ```
 

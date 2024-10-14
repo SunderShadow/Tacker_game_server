@@ -9,7 +9,7 @@ class Server implements \Ratchet\MessageComponentInterface
 {
     function onOpen(\Ratchet\ConnectionInterface $conn): void
     {
-        $player = Player::register($conn);
+        Player::register($conn);
     }
 
     function onClose(\Ratchet\ConnectionInterface $conn): void
@@ -39,15 +39,29 @@ class Server implements \Ratchet\MessageComponentInterface
                 return;
             }
 
+            if (!isset($msg->data['name'])) {
+                $player->handleMessage(new Error('name field is required'));
+                return;
+            }
+
+            $player->name = $msg->data['name'];
+
             new GameLobby($player);
             return;
         }
 
         if ($msg->action === 'lobby:join') {
-            if (empty($msg->data) && !isset($msg->data['id'])) {
+            if (!isset($msg->data['id'])) {
                 $player->handleMessage(new Error('Undefined lobby'));
                 return;
             }
+
+            if (!isset($msg->data['name'])) {
+                $player->handleMessage(new Error('name field is required'));
+                return;
+            }
+
+            $player->name = $msg->data['name'];
 
             $lobby = GameLobby::getById($msg->data['id']);
 

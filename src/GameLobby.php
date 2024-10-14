@@ -24,7 +24,8 @@ class GameLobby implements ServerMessageHandlerInterface
 
     public readonly int $id;
 
-    protected array $players = [];
+    /** @var Player[] */
+    public array $players = [];
 
     public function __construct(Player $owner)
     {
@@ -36,12 +37,18 @@ class GameLobby implements ServerMessageHandlerInterface
         static::$instances[$this->id] = $this;
 
         $this->owner->handleMessage(new Message('lobby:create:success', [
-            'id' => $this->id
+            'id'      => $this->id,
+            'players' => $this->players
         ]));
     }
 
     public function addPlayer(Player $player): Player
     {
+        foreach ($this->players as $playerInLobby) {
+            $playerInLobby->handleMessage(new Message('lobby:join:guest', [
+                'player' => $player
+            ]));
+        }
         return $this->players[] = $player;
     }
 

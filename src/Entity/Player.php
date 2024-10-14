@@ -7,13 +7,15 @@ use Core\GameLobby;
 use Core\Message\Message;
 use Core\Message\PlayerCardReceive;
 
-class Player extends User
+class Player extends User implements \JsonSerializable
 {
     const int MAX_CARDS = 2;
 
     public GameLobby $lobby;
 
     public Game $game;
+
+    public string $name;
 
     /** @var Card[]  */
     protected array $cards = [];
@@ -93,5 +95,13 @@ class Player extends User
     public function sendMessage(Message $msg): void
     {
         $this->game->handleMessage($this, $msg);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name
+        ];
     }
 }
